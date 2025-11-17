@@ -1,0 +1,16 @@
+name: Ejecutr script Bash
+on:
+ push:
+  branch: [ main ]
+jobs:
+ build:
+  runs-on: ubuntu-latest
+  steps:
+  - name: Clonar repositorio
+    uses: actions/checkout@v3
+    
+  - name: Dar permisos de ejecución al script
+    run: chmod +x src/archivo_hola.sh
+    
+  - name: Ejecutar el script
+    run: ./src/archivo_hola.sh
