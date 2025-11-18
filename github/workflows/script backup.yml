@@ -1,0 +1,22 @@
+name: hacer backup
+ backup_y_accion:
+   runs-on: ubuntu-latest
+   
+   steps:
+     - name: Checkout del repositorio
+       uses: actions/checkoutv@5
+      
+     - name: Crear copia de seguridad
+       run: |
+         mkdir -p backup
+         cp -r datos backup/
+     
+     - name: Comprimir carpeta de backup
+       run: |
+         tar -czf backup.tar.gz backup
+        
+     - name: Subir artefacto
+       uses: actions/upload-artifact@v5
+       with:
+         name: copia-seguridad
+         path: backup.tar.gz
